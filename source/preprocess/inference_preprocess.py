@@ -73,4 +73,4 @@ if __name__ == "__main__":
     preprocessed_df = convert_type(preprocessed_df, preprocessed_df.columns, type_target='float')
     preprocessed_df = pd.concat([df_id, preprocessed_df], axis=1)
 
-    preprocessed_df.to_csv(f"{base_output_dir}/train/preprocessed.csv", index=False)
+    preprocessed_df.to_csv(f"{base_output_dir}/preprocessed/preprocessed.csv", index=False)
