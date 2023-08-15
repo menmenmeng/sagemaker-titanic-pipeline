@@ -33,7 +33,7 @@ if __name__ == "__main__":
     base_preproc_input_dir = args.base_preproc_input_dir
     base_output_dir = args.base_output_dir
     split_rate = args.split_rate
-    label_column = args.label_column
+    # label_column = args.label_column
 
     # load titanic dataset
     df = pd.read_csv(base_preproc_input_dir + '/raw_features.csv')
