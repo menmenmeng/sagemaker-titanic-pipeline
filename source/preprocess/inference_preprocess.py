@@ -71,8 +71,6 @@ if __name__ == "__main__":
 
     preprocessed_df = df
     preprocessed_df = convert_type(preprocessed_df, preprocessed_df.columns, type_target='float')
-    preprocessed_df = pd.concat([df_id, df_label, preprocessed_df], axis=1)
+    preprocessed_df = pd.concat([df_id, preprocessed_df], axis=1)
 
-    train_df, test_df = split_train_test(preprocessed_df, test_ratio=split_rate)
-    train_df.to_csv(f"{base_output_dir}/train/train.csv", index=False)
-    test_df.to_csv(f"{base_output_dir}/test/test.csv", index=False)
+    preprocessed_df.to_csv(f"{base_output_dir}/train/preprocessed.csv", index=False)
