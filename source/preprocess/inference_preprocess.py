@@ -3,6 +3,7 @@ import os
 import requests
 import tempfile
 import subprocess, sys
+import boto3
 
 import pandas as pd
 import numpy as np
@@ -13,8 +14,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
-from preprocess import *
-
 if __name__ == "__main__":
 
     ###########################################################################################
@@ -22,18 +21,26 @@ if __name__ == "__main__":
     ###########################################################################################
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--base_output_dir', type=str, default="/opt/ml/processing/output")
+    parser.add_argument('--bucket_name', type=str, default="sagemaker-titanic-pipeline-bucket-0001")
     parser.add_argument('--base_preproc_input_dir', type=str, default="/opt/ml/processing/input")
+    parser.add_argument('--base_output_dir', type=str, default="/opt/ml/processing/output")
     parser.add_argument('--split_rate', type=float, default=0.15)
     # parser.add_argument('--label_column', type=str, default="Survived") : inference용으로는 없어야 함
 
     # parse arguments
     args = parser.parse_args()
 
+    s3_bucket = args.bucket_name
     base_preproc_input_dir = args.base_preproc_input_dir
     base_output_dir = args.base_output_dir
     split_rate = args.split_rate
     # label_column = args.label_column
+
+
+    s3_client = boto3.client('s3')
+    s3_client.download_file(s3_bucket, 'source/preprocess/preprocess.py', 'preprocess.py')
+    from preprocess import *
+
 
     # load titanic dataset
     df = pd.read_csv(base_preproc_input_dir + '/raw_features.csv')
