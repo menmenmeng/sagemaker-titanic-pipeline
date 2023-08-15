@@ -38,7 +38,8 @@ if __name__ == "__main__":
 
 
     s3_client = boto3.client('s3')
-    s3_client.download_file(s3_bucket, 'source/preprocess/preprocess.py', 'preprocess.py')
+    os.getcwd()
+    s3_client.download_file(s3_bucket, 'source/preprocess/preprocess.py', os.path.join(os.getcwd(), 'preprocess.py'))
     from preprocess import *
 
 
