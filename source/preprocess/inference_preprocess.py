@@ -36,7 +36,7 @@ if __name__ == "__main__":
     label_column = args.label_column
 
     # load titanic dataset
-    df = pd.read_csv(base_preproc_input_dir + '/raw.csv')
+    df = pd.read_csv(base_preproc_input_dir + '/raw_features.csv')
 
     # 컬럼 종류
     id_col = ['PassengerId']
