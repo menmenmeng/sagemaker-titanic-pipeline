@@ -25,6 +25,7 @@ if __name__ == "__main__":
     parser.add_argument('--base_preproc_input_dir', type=str, default="/opt/ml/processing/input")
     parser.add_argument('--base_output_dir', type=str, default="/opt/ml/processing/output")
     parser.add_argument('--split_rate', type=float, default=0.15)
+    parser.add_argument('--custom_bool', type=int, default=0)
     # parser.add_argument('--label_column', type=str, default="Survived") : inference용으로는 없어야 함
 
     # parse arguments
@@ -36,16 +37,19 @@ if __name__ == "__main__":
     split_rate = args.split_rate
     # label_column = args.label_column
 
+    print('current directory:', os.getcwd())
 
-    s3_client = boto3.client('s3')
-    current_directory = os.getcwd()
+    if args.custom_bool == 0:
 
-    if current_directory not in sys.path:
-        sys.path.append(current_directory)
+        s3_client = boto3.client('s3')
+        current_directory = os.getcwd()
 
-    s3_client.download_file(s3_bucket, 'source/preprocess/preprocess.py', os.path.join(current_directory, 'preprocess.py'))
+        if current_directory not in sys.path:
+            sys.path.append(current_directory)
+
+        s3_client.download_file(s3_bucket, 'source/preprocess/preprocess.py', os.path.join(current_directory, 'preprocess.py'))
+
     from preprocess import *
-
 
     # load titanic dataset
     df = pd.read_csv(base_preproc_input_dir + '/raw_features.csv')
