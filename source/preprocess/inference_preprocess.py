@@ -65,7 +65,7 @@ def one_hot_encode_COLUMNS(raw, one_hot_cols):
 def get_today_string():
     year = str(datetime.now().year)
     month = str(datetime.now().month)
-    day = str(datetime.now().daty)
+    day = str(datetime.now().day)
     return year+month+day
 
 
