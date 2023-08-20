@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from glob import glob
 from datetime import datetime
+from pytz import timezone
 
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -63,9 +64,9 @@ def one_hot_encode_COLUMNS(raw, one_hot_cols):
 
 
 def get_today_string():
-    year = str(datetime.now().year)
-    month = str(datetime.now().month).rjust(2, "0")
-    day = str(datetime.now().day).rjust(2, "0")
+    year = str(datetime.now(timezone('Asia/Seoul')).year)
+    month = str(datetime.now(timezone('Asia/Seoul')).month).rjust(2, "0")
+    day = str(datetime.now(timezone('Asia/Seoul')).day).rjust(2, "0")
     return year+month+day
 
 
