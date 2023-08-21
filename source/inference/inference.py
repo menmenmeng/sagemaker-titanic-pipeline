@@ -13,7 +13,7 @@ def model_fn(model_dir):
     """
     Deserialize and return fitted model.
     """
-    model = joblib.load(model_dir)
+    model = joblib.load(f"{model_dir}/model.pkl")
     return model
 
 

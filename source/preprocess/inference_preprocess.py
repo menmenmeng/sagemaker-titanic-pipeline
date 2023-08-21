@@ -81,7 +81,7 @@ if __name__ == "__main__":
     parser.add_argument('--base_preproc_input_dir', type=str, default="/opt/ml/processing/input")
     parser.add_argument('--base_output_dir', type=str, default="/opt/ml/processing/output")
     parser.add_argument('--split_rate', type=float, default=0.15)
-    parser.add_argument('--custom_bool', type=int, default=0)
+    # parser.add_argument('--custom_bool', type=int, default=0)
     # parser.add_argument('--label_column', type=str, default="Survived") : inference용으로는 없어야 함
 
     # parse arguments
